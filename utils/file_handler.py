@@ -49,4 +49,4 @@ class File_Handler:
 
     def remove_diff_files(self, dfs, lst):
         for i in dfs:
-            lst.remove(i)
+            del lst[i]
