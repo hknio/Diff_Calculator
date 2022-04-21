@@ -7,7 +7,7 @@ Calculates the relative percentage difference in two given directories. It was m
 # Requirements
 Requirements can be installed with the following command.
 ```
-pip3 install -r requirements.tx
+pip3 install -r requirements.txt
 ```
 
 # Usage 
