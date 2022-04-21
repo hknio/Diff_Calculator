@@ -1,4 +1,4 @@
-# Percentage_Calculator
+# Diff_Calculator
 Calculates the relative percentage difference in two given directories.
 
 # Description
