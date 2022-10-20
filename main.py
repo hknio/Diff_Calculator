@@ -13,15 +13,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p1","--path1", action="store", dest='file_path1')
     parser.add_argument("-p2","--path2", action="store", dest='file_path2')
-    parser.add_argument('-v', '--verbose',  action="store_true", required=False,  dest='verbose')
+    parser.add_argument('-a', '--avg',  action="store_true", required=False,  dest='avg')
     args = parser.parse_args()
     file_path1 = args.file_path1
     file_path2 = args.file_path2
-    verbose  = args.verbose
+    avg  = args.avg
 
     '''Get Files From Paths'''
     path1_files = fh.getListOfFiles(file_path1)
     path2_files = fh.getListOfFiles(file_path2)
+
 
     '''Check if Differing Files Exist & Remove differing files'''
     file1_diff = fh.get_files_diff(path1_files, path2_files) # in path1 but not in path2
@@ -36,18 +37,21 @@ if __name__ == '__main__':
     for key1, val1 in path1_files.items():
         for key2, val2 in path2_files.items():
             if key1 == key2:
+                # sc.calculate_the_ratios(val1, val2)
                 sim, diff = sc.calculate_the_ratios(val1, val2)
                 results.append((sim, diff))
 
-    if verbose:
+    if avg:
         print("Results")
         pprint.pprint(results)
         print("*************************")
-        print("Total Similarity: " + str(sc.calculate_total_similarity(results)))
-        print("Total Diff: " + str(sc.calculate_total_diff(results)))
+        print("Avg Similarity: " + str(sc.calculate_total_similarity(results)))
+        print("Avg Diff: " + str(sc.calculate_total_diff(results)))
         print("Process Completed")
     else:
-        print("Total Diff: " + str(sc.calculate_total_diff(results)))
+        print("Results")
+        pprint.pprint(results)
+        print("*************************")
         print("Process Completed")
 
 
