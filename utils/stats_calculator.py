@@ -1,4 +1,5 @@
 from Levenshtein import *
+import numpy
 import pprint
 
 class Stats_Calculator:
@@ -15,8 +16,19 @@ class Stats_Calculator:
             
 
     def calculate_total_similarity(self, lst):
-        return sum(sim for sim, diff in lst) / len(lst)
+        similarities = []
+        dlocs = []
+        for i in lst:
+            tmp = list(i.values())
+            similarities.append(tmp[0][0])
+            dlocs.append(tmp[0][2])
+        return numpy.average(similarities, weights=dlocs)
 
     def calculate_total_diff(self, lst):
-        return sum(diff for sim, diff in lst) / len(lst)
-
+        diffs = []
+        dlocs = []
+        for i in lst:
+            tmp = list(i.values())
+            diffs.append(tmp[0][1])
+            dlocs.append(tmp[0][2])
+        return numpy.average(diffs, weights=dlocs)

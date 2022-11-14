@@ -1,4 +1,5 @@
 import os
+import pprint
 
 class File_Handler:
 
@@ -13,7 +14,7 @@ class File_Handler:
             if ".sol" in l:
                 dir_end_index = l.rfind("/")
                 res.append(l[dir_end_index + 1:])
-            elif ".DS_Store" in l:
+            elif ".DS_Store" in l or ".gitkeep" in l:
                 continue
             else:
                 return None
@@ -23,6 +24,8 @@ class File_Handler:
         listOfFile = os.listdir(dirName)
         allFiles = list()
         for entry in listOfFile:
+            if entry.startswith("."):
+                continue
             fullPath = os.path.join(dirName, entry)
             if os.path.isdir(fullPath):
                 allFiles = allFiles + self._getListOfFiles(fullPath)
@@ -47,6 +50,33 @@ class File_Handler:
         diff = list(set(file1_keys) - set(file2_keys))
         return diff
 
-    def remove_diff_files(self, dfs, lst):
-        for i in dfs:
-            del lst[i]
+    def get_diff_files(self, dfs, lst):
+        result = []
+        for i in lst:
+            if dfs[i]:
+                result.append(dfs[i])
+        return result
+
+    
+    def _count_generator(self, reader):
+        b = reader(1024 * 1024)
+        while b:
+            yield b
+            b = reader(1024 * 1024)
+    
+    def count_diff_lines(self,f1,f2):
+        count1 = 0
+        count2 = 0
+        with open(f1, 'rb') as fp1:
+            c_generator = self._count_generator(fp1.raw.read)
+            count1 = sum(buffer.count(b'\n') for buffer in c_generator)
+        with open(f2, 'rb') as fp2:
+            c_generator = self._count_generator(fp2.raw.read)
+            count2 = sum(buffer.count(b'\n') for buffer in c_generator)
+        return abs(count1 - count2)
+    
+    def count_lines(self, f):
+        with open(f, 'rb') as fp:
+            c_generator = self._count_generator(fp.raw.read)
+            count = sum(buffer.count(b'\n') for buffer in c_generator)
+            return count
