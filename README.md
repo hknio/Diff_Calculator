@@ -44,3 +44,4 @@ Run via Docker
 ```
 sh ./sc.sh <PATH1> <PATH2>
 ```
+![alt text](https://github.com/hknio/Diff_Calculator/blob/main/Screenshots/Screenshot%202022-11-24%20at%2022.30.38.png)
