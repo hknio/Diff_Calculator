@@ -22,6 +22,25 @@ python3 main.py -p1 <PATH1> -p2 <PATH2> -v
 ```
 # Example Output
 Normal:
-![alt text](https://github.com/hknio/Percentage_Calculator/blob/7f18c0b770ac7fd19cefbbcea200c3bb4faf7901/Screenshots/Screen%20Shot%202022-04-21%20at%2022.12.56.png)
+![alt text](https://github.com/hknio/Diff_Calculator/blob/main/Screenshots/Screenshot%202022-11-24%20at%2022.13.53.png)
+
 Verbose:
-![alt text](https://github.com/hknio/Percentage_Calculator/blob/7f18c0b770ac7fd19cefbbcea200c3bb4faf7901/Screenshots/Screen%20Shot%202022-04-21%20at%2022.13.06.png)
+![alt text](https://github.com/hknio/Diff_Calculator/blob/main/Screenshots/Screenshot%202022-11-24%20at%2022.13.45.png)
+
+# Output Details
+The tool's output also lists the files that were examined. For each file, the list contains similarity percentage, difference percentage, and number of changed lines, in that order.
+
+![alt text](https://github.com/hknio/Diff_Calculator/blob/main/Screenshots/Screenshot%202022-11-24%20at%2022.14.26.png)
+
+# Docker 
+
+Diff calculator now offers Docker to its users. In order to run Diff Calculator via docker one has to use the two provided scripts; build.sh and sc.sh. 
+
+Setup Docker
+```
+sh ./build.sh
+```
+Run via Docker 
+```
+sh ./sc.sh <PATH1> <PATH2>
+```
