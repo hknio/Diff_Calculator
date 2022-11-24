@@ -1,4 +1,4 @@
-from Levenshtein import *
+from Levenshtein import ratio
 import numpy
 import pprint
 
