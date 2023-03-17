@@ -38,6 +38,14 @@ class File_Handler:
         file_names = self.seperate_name_from_dir(file_paths)
         return self.convert_to_dict(file_paths=file_paths, file_names= file_names)
 
+    def removeIgnoredFiles(self, lst, ignoredFiles):
+        for ignoredFile in ignoredFiles:
+                try:
+                    del lst[ignoredFile]
+                except KeyError:
+                    pass
+        return lst
+
     def file_names_match(self, keyword, filename):
         if keyword in filename:
             return True

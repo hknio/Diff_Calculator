@@ -16,15 +16,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p1","--path1", action="store", dest='file_path1')
     parser.add_argument("-p2","--path2", action="store", dest='file_path2')
+    parser.add_argument('-i', '--ignore', action="store", required=False,  dest='ignore', nargs='+')
     parser.add_argument('-v', '--verbose',  action="store_true", required=False,  dest='verbose')
     args = parser.parse_args()
     file_path1 = args.file_path1
     file_path2 = args.file_path2
     verbose  = args.verbose
+    ignoreList = args.ignore
 
     '''Get Files From Paths'''
-    path1_files = fh.getListOfFiles(file_path1)
-    path2_files = fh.getListOfFiles(file_path2)
+    path1_files = fh.removeIgnoredFiles(fh.getListOfFiles(file_path1), ignoreList) if ignoreList else fh.getListOfFiles(file_path1)
+    path2_files = fh.removeIgnoredFiles(fh.getListOfFiles(file_path2), ignoreList) if ignoreList else fh.getListOfFiles(file_path2)
 
     '''Check if Differing Files Exist'''
     file2_diff = fh.get_files_diff(path2_files, path1_files) # in path2 but not in path1
