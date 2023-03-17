@@ -20,6 +20,10 @@ Verbose:
 ```
 python3 main.py -p1 <PATH1> -p2 <PATH2> -v
 ```
+Ignore some files:
+```
+python3 main.py -p1 <PATH1> -p2 <PATH2> -i file1.sol file2.sol
+```
 # Example Output
 Normal:
 ![alt text](https://github.com/hknio/Diff_Calculator/blob/main/Screenshots/Screenshot%202022-11-24%20at%2022.13.53.png)
