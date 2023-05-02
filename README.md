@@ -1,4 +1,7 @@
-# Diff_Calculator
+# Diff_Calculator (OUTDATED)
+
+Use https://github.com/hknio/Compare_Tool
+
 Calculates the relative percentage difference in two given directories.
 
 # Description
